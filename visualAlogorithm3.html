@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Algorithm 3</title>
+
+    <style>
+        button {
+            margin-top: 10px;
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="640" height="480" style="border:1px solid black"></canvas>
+    <br>
+    <button id="button">Reload</button>
+
+    <script>
+        var canvas = document.getElementById("canvas").getContext("2d");
+        var button = document.getElementById("button");
+
+        canvas.strokeStyle = "black";
+        canvas.lineWidth = 1;
+
+        for (var i = 0; i < 640; i += 1) {
+            canvas.beginPath();
+            canvas.moveTo(i, 0);
+            canvas.lineTo(Math.floor(Math.random() * 640), 480);
+            canvas.stroke();
+        } 
+
+        function reload() {
+            canvas.clearRect(0, 0, 640, 480);
+            for (var i = 0; i < 640; i += 1) {
+                canvas.beginPath();
+                canvas.moveTo(i, 0);
+                canvas.lineTo(Math.floor(Math.random() * 640), 480);
+                canvas.stroke();
+            }
+        }
+
+        button.addEventListener("click", reload);
+
+        
+    </script>
+</body>
+</html>
