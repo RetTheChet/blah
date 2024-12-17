@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Functions 2</title>
+</head>
+<body>
+    <canvas id="canvas1" width="640" height="480" style="border: 1px solid black; 
+        position: absolute; left: 2; top: 2; z-index: 0;"></canvas>
+
+    <canvas id="canvas2" width="640" height="480" style="border: 1px solid black; 
+        position: absolute; left: 2; top: 2; z-index: 1;"></canvas>
+    
+    <script>
+        var dt1 = document.getElementById("canvas1").getContext("2d");
+        var dt2 = document.getElementById("canvas2").getContext("2d");
+
+        function randomColor() {
+
+            var r = Math.floor(Math.random() * 255) + 1;
+            var g = Math.floor(Math.random() * 255) + 1;
+            var b = Math.floor(Math.random() * 255) + 1;
+
+            return "rgb(" + r + "," + g + "," + b + ")";
+        }
+
+        function drawFlower(x, y) {
+            dt2.strokeStyle = "darkGreen";
+            dt2.lineWidth = 3;
+            dt2.beginPath();
+            dt2.moveTo(x, y);
+            dt2.lineTo(x, (y + 50));
+            dt2.stroke();
+
+            dt2.fillStyle = randomColor();
+            dt2.beginPath();
+            dt2.arc(x, y, 15, 0, 2 * Math.PI);
+            dt2.fill();
+
+            dt2.fillStyle = "yellow";
+            dt2.beginPath();
+            dt2.arc(x, y, 7, 0, 2 * Math.PI);
+            dt2.fill();
+        }
+
+        function go() {
+            dt2.clearRect(0,0,640,480);
+
+            for(x = 1; x <= 5; x++) {
+                drawFlower(Math.floor(Math.random() * 640) + 1
+                    , Math.floor(Math.random() * 180) + 280);
+            }
+            
+        }
+
+        // Sky
+        dt1.fillStyle = "skyBlue";
+        dt1.fillRect(0,0, 640,480);
+        // Grass
+        dt1.fillStyle = "green";
+        dt1.fillRect(0, 300, 640, 180);
+
+        document.addEventListener("click", go)
+
+        
+    </script>
+</body>
+</html>
